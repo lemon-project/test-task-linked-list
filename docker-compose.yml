@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  sorted-linked-list:
+    build:
+      context: docker
+      dockerfile: Dockerfile
+    image: sorted-linked-list
+    container_name: sorted-linked-list
+    volumes:
+      - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - .:/var/www
+    environment:
+      - PHP_EXTENSION_DIR=/usr/local/lib/php/extensions/no-debug-non-zts-20190902
+    networks:
+      - sorted-linked-list-network
+networks:
+  sorted-linked-list-network:
+    driver: bridge

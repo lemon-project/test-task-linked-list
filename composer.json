@@ -1,0 +1,21 @@
+{
+    "name": "lemon-project/sorted-list",
+    "description": "Tests library",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LemonProject\\SortedList\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rafal Wachstiel"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^12.1"
+    }
+}
