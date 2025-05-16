@@ -52,9 +52,9 @@ class LinkedListTest extends TestCase
     public function testAddUniqueIntegers(): void
     {
         $list = LinkedList::asIntegerList();
-        $list->add(1, true);
-        $list->add(2, true);
-        $actual = $list->add(1, true); // Duplicate
+        $list->addUnique(1);
+        $list->addUnique(2);
+        $actual = $list->addUnique(1); // Duplicate
 
         $this->assertFalse($actual);
         $this->assertEquals([1, 2], $list->toArray());

@@ -6,7 +6,6 @@ namespace LemonProject\SortedList\Handlers;
 
 use LemonProject\SortedList\Comparators\Comparator;
 use LemonProject\SortedList\LinkedList;
-use LemonProject\SortedList\Node;
 
 /**
  * SortLinkedListHandler class

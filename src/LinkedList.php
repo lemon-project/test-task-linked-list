@@ -117,9 +117,21 @@ class LinkedList
      *
      * @return bool
      */
-    public function create(mixed $value, bool $unique = false): bool
+    public function add(mixed $value, bool $unique = false): bool
     {
-        return $this->add(new Node($value), $unique);
+        return $this->push(new Node($value), $unique);
+    }
+    
+    /**
+     * Creates a new node and adds it to the end of list if it does not exist.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function addUnique(mixed $value): bool
+    {
+        return $this->add($value, true);
     }
     
     /**
@@ -132,7 +144,7 @@ class LinkedList
      *
      * @return bool
      */
-    public function add(Node $node, bool $unique = false): bool
+    public function push(Node $node, bool $unique = false): bool
     {
         $this->validate($node->getValue());
         $current = $this->getLast();
@@ -262,7 +274,7 @@ class LinkedList
     }
     
     /**
-     * Checks if the list contains a value
+     * Finds a node in the list using the value
      *
      * @param mixed $value
      *
