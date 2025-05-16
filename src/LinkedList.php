@@ -110,20 +110,31 @@ class LinkedList
     */
     
     /**
-     * Adds a new node to the end of list.
-     * For now, it only allows adding integers and strings.
-     * If values should be unique, set the $unique flag to true.
+     * Creates a new node and adds it to the end of list.
      *
      * @param mixed $value
      * @param bool  $unique
      *
      * @return bool
      */
-    public function add(mixed $value, bool $unique = false): bool
+    public function create(mixed $value, bool $unique = false): bool
     {
-        $this->validate($value);
-        
-        $node    = new Node($value);
+        return $this->add(new Node($value), $unique);
+    }
+    
+    /**
+     * Adds a node to the end of the list.
+     * For now, it only allows adding integers and strings.
+     * If values should be unique, set the $unique flag to true.
+     *
+     * @param Node $node
+     * @param bool $unique
+     *
+     * @return bool
+     */
+    public function add(Node $node, bool $unique = false): bool
+    {
+        $this->validate($node->getValue());
         $current = $this->getLast();
         
         if ($current === null) {
@@ -132,7 +143,7 @@ class LinkedList
             return true;
         }
         
-        if ($unique && $this->exists($value)) {
+        if ($unique && $this->exists($node->getValue())) {
             
             return false;
         }
@@ -161,21 +172,39 @@ class LinkedList
             return false;
         }
         
+        $this->unset($node);
+        
+        // if there was more than one node with the value in the list, then delete the next one
+        if ($this->exists($value)) {
+            
+            return $this->delete($value);
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Unsets the node from the list
+     *
+     * @param Node $node
+     *
+     * @return void
+     */
+    public function unset(Node $node): void
+    {
         $prev = $node->getPrev();
         $next = $node->getNext();
         
         if ($prev !== null) {
             $prev->setNext($node->getNext());
         } else {
-            $this->head = $node->getNext();
+            $this->setHead($node->getNext());
         }
         
         
         $next?->setPrev($node->getPrev());
         
         unset($node);
-        
-        return true;
     }
     
     /**
