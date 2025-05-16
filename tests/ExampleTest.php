@@ -4,8 +4,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * ExampleTest class
  *
- * @author    Rafal Wachstiel <rafal.wachstiel@gmail.com>
- * @copyright Copyright (c) 2024, Rafal Wachstiel
+ * @author Rafal Wachstiel <rafal.wachstiel@gmail.com>
  */
 class ExampleTest extends TestCase
 {
